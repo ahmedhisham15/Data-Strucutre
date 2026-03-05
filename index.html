@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Data Structure</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">DS</div>
+    <div>
+      <h1>Data Structure</h1>
+      <p class="sub">Lecture-style explanations + active animations + quiz bank</p>
+    </div>
+  </div>
+
+  <nav class="tabs" aria-label="Sections">
+    <button class="tab active" data-view="learnView">Learn</button>
+    <button class="tab" data-view="stackView">Stack Lab</button>
+    <button class="tab" data-view="exprView">Expressions Lab</button>
+    <button class="tab" data-view="queueView">Queue Lab</button>
+    <button class="tab" data-view="quizView">Quiz (60)</button>
+  </nav>
+</header>
+
+<main class="container">
+  <!-- LEARN VIEW -->
+  <section id="learnView" class="view active">
+    <div class="grid two">
+      <div class="card">
+        <h2>📌 What you must master (exam scope)</h2>
+        <div class="pillRow">
+          <span class="pill">Stack ADT + tracing</span>
+          <span class="pill">Balanced parentheses</span>
+          <span class="pill">Duplicate parentheses</span>
+          <span class="pill">Infix → Postfix</span>
+          <span class="pill">Infix → Prefix</span>
+          <span class="pill">Postfix evaluation</span>
+          <span class="pill">Prefix evaluation</span>
+          <span class="pill">Queue + tracing</span>
+          <span class="pill">Circular queue math</span>
+          <span class="pill">Stack vs Queue</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>Stack Mastery</h3>
+        <ul class="list">
+          <li><b>Stack = LIFO</b> (Last In, First Out). All operations happen at <b>TOP</b>.</li>
+          <li><b>Core ops:</b> push, pop, top, empty, size (and full if array-based fixed size).</li>
+          <li><b>Tracing:</b> draw the stack after every operation.</li>
+          <li><b>Applications:</b> reverse string, balanced parentheses, expression conversion & evaluation.</li>
+        </ul>
+
+        <div class="ctaRow">
+          <button class="btn primary" data-jump="stackView">Go to Stack Lab</button>
+          <button class="btn" id="btnLearnStackAnim">Play Stack Animation</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>Expressions</h3>
+        <ul class="list">
+          <li><b>Precedence:</b> ^ then * / then + -</li>
+          <li><b>Infix</b>: A + B (human-friendly)</li>
+          <li><b>Postfix</b>: A B + (easy for computer)</li>
+          <li><b>Prefix</b>: + A B</li>
+        </ul>
+
+        <div class="ctaRow">
+          <button class="btn primary" data-jump="exprView">Go to Expressions Lab</button>
+          <button class="btn" id="btnLearnExprAnim">Play Expression Animation</button>
+        </div>
+
+        <div class="divider"></div>
+
+        <h3>Queue + Circular Queue</h3>
+        <ul class="list">
+          <li><b>Queue = FIFO</b> (First In, First Out). Enqueue at <b>REAR</b>, Dequeue from <b>FRONT</b>.</li>
+          <li><b>Circular queue</b> uses wrap-around: <code>(i+1) % size</code></li>
+          <li>Exam loves <b>front/rear tracing</b>.</li>
+        </ul>
+
+        <div class="ctaRow">
+          <button class="btn primary" data-jump="queueView">Go to Queue Lab</button>
+          <button class="btn" id="btnLearnQueueAnim">Play Queue Animation</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📚 Stack Cheat Sheet (quick)</h2>
+
+        <details open class="acc">
+          <summary>Part 1: Stack Fundamentals</summary>
+          <div class="accBody">
+            <div class="table">
+              <div class="tr head">
+                <div>Property</div><div>Description</div>
+              </div>
+              <div class="tr"><div>Type</div><div>Linear Data Structure</div></div>
+              <div class="tr"><div>Principle</div><div>LIFO (Last In, First Out)</div></div>
+              <div class="tr"><div>Where ops happen?</div><div>TOP only</div></div>
+            </div>
+
+            <div class="note">
+              <b>Time complexity:</b> push/pop/top/empty/size are typically <b>O(1)</b>.
+            </div>
+
+            <button class="btn ghost" id="btnCheatStackDemo">Play tracing demo</button>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Part 2: Stack Applications</summary>
+          <div class="accBody">
+            <ul class="list">
+              <li><b>Reverse string:</b> push chars then pop → reversed.</li>
+              <li><b>Balanced parentheses:</b> every closing must match the last opening.</li>
+              <li><b>Duplicate parentheses:</b> detect empty/duplicate brackets like <code>((x+y))</code>.</li>
+            </ul>
+            <button class="btn ghost" id="btnCheatParenDemo">Play parentheses demo</button>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Part 3: Precedence + Expression Types</summary>
+          <div class="accBody">
+            <div class="note">
+              <b>Precedence (High → Low):</b> ^ then * / then + -<br/>
+              <b>Associativity:</b> ^ right-to-left, others left-to-right (common rule).
+            </div>
+            <div class="table">
+              <div class="tr head"><div>Type</div><div>Format</div><div>Example</div></div>
+              <div class="tr"><div>Infix</div><div>operand operator operand</div><div>2 + 3</div></div>
+              <div class="tr"><div>Postfix</div><div>operand operand operator</div><div>2 3 +</div></div>
+              <div class="tr"><div>Prefix</div><div>operator operand operand</div><div>+ 2 3</div></div>
+            </div>
+            <button class="btn ghost" id="btnCheatConvertDemo">Play conversion demo</button>
+          </div>
+        </details>
+
+        <details class="acc">
+          <summary>Part 4: Evaluations + STL</summary>
+          <div class="accBody">
+            <ul class="list">
+              <li><b>Postfix eval:</b> scan L→R. operand push. operator pop2 compute push.</li>
+              <li><b>Prefix eval:</b> scan R→L. operand push. operator pop2 compute push.</li>
+              <li><b>STL:</b> <code>#include &lt;stack&gt;</code>, methods: push, pop, top, empty, size.</li>
+            </ul>
+            <button class="btn ghost" id="btnCheatEvalDemo">Play eval demo</button>
+          </div>
+        </details>
+
+        <div class="divider"></div>
+
+        <h3>🎯 One rule that saves marks</h3>
+        <div class="note">
+          In every tracing question: draw the structure state after <b>EVERY</b> operation.
+          That’s how you avoid silly mistakes.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK VIEW -->
+  <section id="stackView" class="view">
+    <div class="grid">
+      <div class="card">
+        <h2>🥞 Stack Lab (LIFO)</h2>
+        <p class="hint">
+          A stack is a sequence where you can access only one end: the <b>TOP</b>.
+          <b>Last pushed</b> is the <b>first popped</b>.
+        </p>
+
+        <div class="controls">
+          <input id="stackInput" class="input" type="text" placeholder="Value (e.g., 7)" maxlength="10" />
+          <button id="btnPush" class="btn primary">Push</button>
+          <button id="btnPop" class="btn">Pop</button>
+          <button id="btnTop" class="btn">Top</button>
+          <button id="btnClearStack" class="btn danger">Clear</button>
+          <button id="btnStackDemo" class="btn ghost">Play trace demo</button>
+        </div>
+
+        <div class="statusRow">
+          <div class="badge" id="stackStatus">Empty</div>
+          <div class="mini"><span>Size: </span><b id="stackSize">0</b></div>
+        </div>
+
+        <div class="vizWrap">
+          <div class="stackBox">
+            <div class="stackLabel">TOP</div>
+            <div id="stackViz" class="stackViz" aria-label="Stack visualization"></div>
+            <div class="stackBase">BOTTOM</div>
+          </div>
+        </div>
+
+        <div class="log">
+          <div class="logHead">Trace Log</div>
+          <div id="stackLog" class="logBody" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>✅ Balanced + Duplicate Parentheses</h2>
+        <p class="hint">
+          Both problems are solved with a stack because we always care about the
+          <b>last opening bracket</b>.
+        </p>
+
+        <div class="controls">
+          <input id="parenInput" class="input wide" type="text"
+                 placeholder="Try: ((x+y))+z  or  {(A+B)*(C+D)}  or  (())" />
+          <button id="btnCheckParen" class="btn primary">Check Balanced</button>
+          <button id="btnCheckDup" class="btn">Check Duplicate</button>
+          <button id="btnParenExampleGood" class="btn">Example ✅</button>
+          <button id="btnParenExampleBad" class="btn">Example ❌</button>
+          <button id="btnParenExampleDup" class="btn">Example (( ))</button>
+          <button id="btnClearParen" class="btn danger">Clear</button>
+        </div>
+
+        <div class="statusRow">
+          <div class="badge" id="parenStatus">Waiting…</div>
+          <div class="badge" id="dupStatus">Duplicate: —</div>
+        </div>
+
+        <div class="parenStage">
+          <div class="parenRow">
+            <div class="label">Scan</div>
+            <div id="scanTape" class="tape"></div>
+          </div>
+          <div class="parenRow">
+            <div class="label">Stack</div>
+            <div class="miniStack">
+              <div id="parenStackViz" class="miniStackViz"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="log">
+          <div class="logHead">Step-by-step</div>
+          <div id="parenLog" class="logBody" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPRESSIONS VIEW -->
+  <section id="exprView" class="view">
+
+    <section class="videos">
+      <h2 class="video-title">📺 Arabic Explanation Videos</h2>
+      <div class="video-container">
+        <a class="video-btn" href="https://www.youtube.com/watch?v=g1Zwz2kSKEU" target="_blank">
+          🎥 Infix → Prefix & Infix → Postfix
+        </a>
+        <a class="video-btn" href="https://www.youtube.com/watch?v=b8RHZ78aMws" target="_blank">
+          🎥 Infix → Postfix using Stack
+        </a>
+        <a class="video-btn" href="https://www.youtube.com/watch?v=GKDtCqsM5uY" target="_blank">
+          🎥 Postfix & Prefix Evaluation using Stack
+        </a>
+      </div>
+    </section>
+
+    <!-- Postfix + Prefix cards -->
+    <div class="grid">
+      <div class="card">
+        <h2>🔁 Infix → Postfix</h2>
+        <p class="hint">
+          <!-- (keep your colored algorithm text as-is) -->
+          <p><span style="color:#38bdf8;font-weight:800;">How the Algorithm Works:</span></p>
+          <p><span style="color:#a78bfa;font-weight:700;">1-</span> <span style="color:#22c55e;font-weight:700;">Create</span> <span style="color:#f59e0b;font-weight:700;">Empty Stack</span> <span style="color:#94a3b8;">&amp;</span> <span style="color:#f59e0b;font-weight:700;">Empty String</span> <span style="color:#94a3b8;">for</span> <span style="color:#38bdf8;font-weight:700;">output</span></p>
+          <p><span style="color:#a78bfa;font-weight:700;">2-</span> <span style="color:#22c55e;font-weight:700;">Loop</span> <span style="color:#94a3b8;">on the</span> <span style="color:#f59e0b;font-weight:700;">Infix Expression</span></p>
+          <p style="margin-left:18px;"><span style="color:#ef4444;font-weight:800;">-</span> <span style="color:#94a3b8;">if it's a</span> <span style="color:#22c55e;font-weight:800;">Digit</span> <span style="color:#94a3b8;">then</span> <span style="color:#38bdf8;font-weight:800;">add it</span> <span style="color:#94a3b8;">to</span> <span style="color:#f59e0b;font-weight:800;">OUTPUT</span></p>
+          <p style="margin-left:18px;"><span style="color:#ef4444;font-weight:800;">-</span> <span style="color:#94a3b8;">if it's</span> <span style="color:#f97316;font-weight:900;">(</span> <span style="color:#94a3b8;">then</span> <span style="color:#a78bfa;font-weight:800;">add it</span> <span style="color:#94a3b8;">to</span> <span style="color:#f59e0b;font-weight:800;">stack</span></p>
+          <p style="margin-left:18px;"><span style="color:#ef4444;font-weight:800;">-</span> <span style="color:#94a3b8;">if it's</span> <span style="color:#f97316;font-weight:900;">)</span> <span style="color:#94a3b8;">then</span> <span style="color:#e879f9;font-weight:800;">pop</span> <span style="color:#94a3b8;">to</span> <span style="color:#f59e0b;font-weight:800;">OUTPUT</span> <span style="color:#94a3b8;">until</span> <span style="color:#f97316;font-weight:900;">(</span></p>
+          <p style="margin-left:18px;"><span style="color:#ef4444;font-weight:800;">-</span> <span style="color:#94a3b8;">if it's an</span> <span style="color:#22c55e;font-weight:800;">Operator</span> <span style="color:#94a3b8;">then</span> <span style="color:#e879f9;font-weight:800;">pop</span> <span style="color:#94a3b8;">until you can</span> <span style="color:#a78bfa;font-weight:800;">push it</span></p>
+          <p><span style="color:#a78bfa;font-weight:700;">3-</span> <span style="color:#94a3b8;">pop the rest</span></p>
+          <p><span style="color:#a78bfa;font-weight:700;">4-</span> <span style="color:#22c55e;font-weight:800;">Print</span> <span style="color:#38bdf8;font-weight:800;">output</span></p>
+        </p>
+
+        <div class="controls">
+          <input id="infixInput" class="input wide" type="text" placeholder="e.g. (2+3)*1 or A+B*C-D/E" />
+          <button id="btnConvertPostfix" class="btn primary">Convert to Postfix</button>
+          <button id="btnConvertExample" class="btn">Example</button>
+          <button id="btnClearConvert" class="btn danger">Clear</button>
+          <button id="btnConvertAnim" class="btn ghost">Play animation</button>
+        </div>
+
+        <div class="statusRow">
+          <div class="badge" id="convertStatus">Waiting…</div>
+        </div>
+
+        <div class="convertStage">
+          <div class="convertRow">
+            <div class="label">Scan</div>
+            <div id="convertTape" class="tape"></div>
+          </div>
+
+          <div class="convertRow two">
+            <div class="pane">
+              <div class="paneHead">Operator Stack</div>
+              <div id="opStackViz" class="opStackViz"></div>
+            </div>
+            <div class="pane">
+              <div class="paneHead">Output (Postfix)</div>
+              <div id="postfixOut" class="outputBox"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="log">
+          <div class="logHead">Conversion Trace</div>
+          <div id="convertLog" class="logBody" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🔁 Infix → Prefix</h2>
+        <p class="hint">
+          <!-- (keep your colored algorithm text as-is) -->
+          <p><span style="color:#38bdf8;font-weight:800;">How the Algorithm Work:</span></p>
+          <p><span style="color:#a78bfa;font-weight:700;">1-</span> <span style="color:#22c55e;font-weight:700;">Reverse</span> <span style="color:#94a3b8;">the</span> <span style="color:#f59e0b;font-weight:800;">Infix Expression</span></p>
+          <p><span style="color:#a78bfa;font-weight:700;">2-</span> <span style="color:#22c55e;font-weight:700;">Change</span> <span style="color:#94a3b8;">the</span> <span style="color:#f59e0b;font-weight:800;">Parentheses</span></p>
+          <p style="margin-left:18px;"><span style="color:#ef4444;font-weight:800;">-</span> <span style="color:#94a3b8;">( → )</span></p>
+          <p style="margin-left:18px;"><span style="color:#ef4444;font-weight:800;">-</span> <span style="color:#94a3b8;">) → (</span></p>
+          <p><span style="color:#a78bfa;font-weight:700;">3-</span> <span style="color:#22c55e;font-weight:700;">Convert</span> <span style="color:#94a3b8;">to</span> <span style="color:#38bdf8;font-weight:800;">Postfix</span></p>
+          <p><span style="color:#a78bfa;font-weight:700;">5-</span> <span style="color:#22c55e;font-weight:800;">Reverse</span> <span style="color:#f59e0b;font-weight:800;">OUTPUT</span></p>
+          <p><span style="color:#a78bfa;font-weight:700;">6-</span> <span style="color:#22c55e;font-weight:800;">Print</span> <span style="color:#38bdf8;font-weight:800;">Prefix</span></p>
+        </p>
+
+        <div class="controls">
+          <input id="infix2Input" class="input wide" type="text" placeholder="e.g. 2+3*1 or A+B*C" />
+          <button id="btnConvertPrefix" class="btn primary">Convert to Prefix</button>
+          <button id="btnPrefixExample" class="btn">Example</button>
+          <button id="btnClearPrefix" class="btn danger">Clear</button>
+          <button id="btnPrefixAnim" class="btn ghost">Play animation</button>
+        </div>
+
+        <div class="statusRow">
+          <div class="badge" id="prefixStatus">Waiting…</div>
+        </div>
+
+        <div class="convertStage">
+          <div class="convertRow">
+            <div class="label">Scan</div>
+            <div id="prefixTape" class="tape"></div>
+          </div>
+
+          <div class="convertRow two">
+            <div class="pane">
+              <div class="paneHead">Operator Stack</div>
+              <div id="prefixOpStackViz" class="opStackViz"></div>
+            </div>
+
+            <div class="pane">
+              <div class="paneHead">Output (Postfix of reversed)</div>
+              <div id="prefixPostfixOut" class="outputBox"></div>
+            </div>
+          </div>
+
+          <div class="note">
+            <b>Final Prefix:</b> <span id="prefixFinalText">—</span>
+          </div>
+
+          <div class="note" id="prefixSteps">Steps will appear here.</div>
+        </div>
+
+        <!-- ✅ Prefix Conversion Trace -->
+        <div class="log">
+          <div class="logHead">Prefix Conversion Trace</div>
+          <div id="prefixConvertLog" class="logBody" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ Stack vs Queue moved here (after the two cards) -->
+    <div class="card" style="margin-top:16px;">
+      <h3>⚖️ Stack vs Queue</h3>
+      <div class="table">
+        <div class="tr head"><div>Feature</div><div>Stack</div><div>Queue</div></div>
+        <div class="tr"><div>Rule</div><div>LIFO</div><div>FIFO</div></div>
+        <div class="tr"><div>Insert</div><div>push at TOP</div><div>enqueue at REAR</div></div>
+        <div class="tr"><div>Remove</div><div>pop from TOP</div><div>dequeue from FRONT</div></div>
+        <div class="tr"><div>Used for</div><div>undo, parentheses, expressions</div><div>waiting lines, scheduling</div></div>
+      </div>
+    </div>
+
+    <div class="grid two" style="margin-top:16px;">
+      <div class="card">
+        <h2>🧮 Evaluate Postfix</h2>
+        <p class="hint">
+          <p><span style="color:#38bdf8;font-weight:800;">🧮 Evaluate Postfix Expression:</span></p>
+          <p><span style="color:#38bdf8;font-weight:800;">How the Algorithm Work:</span></p>
+          <p><span style="color:#a78bfa;font-weight:700;">1-</span> <span style="color:#22c55e;font-weight:700;">Create</span> <span style="color:#f59e0b;font-weight:800;">Empty Stack</span></p>
+          <p><span style="color:#a78bfa;font-weight:700;">2-</span> <span style="color:#22c55e;font-weight:700;">Loop</span> <span style="color:#94a3b8;">left → right</span></p>
+          <p style="margin-left:18px;"><span style="color:#ef4444;font-weight:800;">-</span> operand → <span style="color:#a78bfa;font-weight:800;">push</span></p>
+          <p style="margin-left:18px;"><span style="color:#ef4444;font-weight:800;">-</span> operator → pop2, compute, push result</p>
+          <p><span style="color:#a78bfa;font-weight:700;">4-</span> print result</p>
+        </p>
+
+        <div class="controls">
+          <input id="postfixInput" class="input wide" type="text" placeholder="e.g. 2 3 1 * + 9 -" />
+          <button id="btnEvalPostfix" class="btn primary">Evaluate</button>
+          <button id="btnEvalExample" class="btn">Example</button>
+          <button id="btnClearEval" class="btn danger">Clear</button>
+        </div>
+
+        <div class="statusRow">
+          <div class="badge" id="evalStatus">Waiting…</div>
+          <div class="mini"><span>Result: </span><b id="evalResult">—</b></div>
+        </div>
+
+        <div class="evalStage">
+          <div class="evalRow">
+            <div class="label">Tokens</div>
+            <div id="evalTape" class="tape"></div>
+          </div>
+          <div class="evalRow">
+            <div class="label">Stack</div>
+            <div class="miniStack big">
+              <div id="evalStackViz" class="miniStackViz"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="log">
+          <div class="logHead">Evaluation Trace</div>
+          <div id="evalLog" class="logBody" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🧮 Evaluate Prefix</h2>
+        <p class="hint">
+          <p><span style="color:#38bdf8;font-weight:800;">🧮 Evaluate Prefix Expression:</span></p>
+          <p><span style="color:#38bdf8;font-weight:800;">How the Algorithm Work:</span></p>
+          <p><span style="color:#a78bfa;font-weight:700;">1-</span> Create Empty Stack</p>
+          <p><span style="color:#a78bfa;font-weight:700;">2-</span> Loop right → left</p>
+          <p style="margin-left:18px;">operand → push</p>
+          <p style="margin-left:18px;">operator → pop2, compute, push</p>
+        </p>
+
+        <div class="controls">
+          <input id="prefixEvalInput" class="input wide" type="text" placeholder="e.g. - + 2 * 3 1 9" />
+          <button id="btnEvalPrefix" class="btn primary">Evaluate</button>
+          <button id="btnPrefixEvalExample" class="btn">Example</button>
+          <button id="btnClearPrefixEval" class="btn danger">Clear</button>
+        </div>
+
+        <div class="statusRow">
+          <div class="badge" id="prefixEvalStatus">Waiting…</div>
+          <div class="mini"><span>Result: </span><b id="prefixEvalResult">—</b></div>
+        </div>
+
+        <div class="evalStage">
+          <div class="evalRow">
+            <div class="label">Tokens</div>
+            <div id="prefixEvalTape" class="tape"></div>
+          </div>
+          <div class="evalRow">
+            <div class="label">Stack</div>
+            <div class="miniStack big">
+              <div id="prefixEvalStackViz" class="miniStackViz"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="log">
+          <div class="logHead">Evaluation Trace</div>
+          <div id="prefixEvalLog" class="logBody" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUEUE VIEW -->
+  <section id="queueView" class="view">
+    <div class="grid">
+      <div class="card">
+        <h2>🚶 Queue Lab (FIFO)</h2>
+        <p class="hint">
+          Queue is FIFO: first element added is the first removed.
+          Enqueue at <b>REAR</b>, Dequeue from <b>FRONT</b>.
+        </p>
+
+        <div class="controls">
+          <input id="queueInput" class="input" type="text" placeholder="Value (e.g., 5)" maxlength="10" />
+          <button id="btnEnq" class="btn primary">Enqueue</button>
+          <button id="btnDeq" class="btn">Dequeue</button>
+          <button id="btnFront" class="btn">Front</button>
+          <button id="btnClearQueue" class="btn danger">Clear</button>
+          <button id="btnQueueDemo" class="btn ghost">Play trace demo</button>
+        </div>
+
+        <div class="statusRow">
+          <div class="badge" id="queueStatus">Empty</div>
+          <div class="mini"><span>Size: </span><b id="queueSize">0</b></div>
+        </div>
+
+        <div class="queueLane">
+          <div class="laneLabel left">FRONT</div>
+          <div id="queueViz" class="queueViz"></div>
+          <div class="laneLabel right">REAR</div>
+        </div>
+
+        <div class="log">
+          <div class="logHead">Trace Log</div>
+          <div id="queueLog" class="logBody" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🌀 Circular Queue (front/rear math)</h2>
+        <p class="hint">
+          Wrap-around using: <code>(i + 1) % size</code>.
+          This prevents wasted space.
+        </p>
+
+        <div class="controls">
+          <input id="cqueueInput" class="input" type="text" placeholder="Value (e.g., 9)" maxlength="10" />
+          <button id="btnCEnq" class="btn primary">Enqueue</button>
+          <button id="btnCDeq" class="btn">Dequeue</button>
+          <button id="btnCReset" class="btn danger">Reset</button>
+          <button id="btnCAnim" class="btn ghost">Play animation</button>
+        </div>
+
+        <div class="statusRow">
+          <div class="badge" id="cqueueStatus">Ready</div>
+          <div class="mini">
+            <span>front: </span><b id="cqFront">0</b>
+            <span class="sep">rear: </span><b id="cqRear">-1</b>
+          </div>
+        </div>
+
+        <div class="ringWrap">
+          <div id="ring" class="ring"></div>
+        </div>
+
+        <div class="note">
+          <b>Full (classic):</b> <code>(rear + 1) % size == front</code><br/>
+          <b>Empty:</b> count == 0
+        </div>
+
+        <div class="log">
+          <div class="logHead">Trace Log</div>
+          <div id="cqueueLog" class="logBody" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ VIEW -->
+  <section id="quizView" class="view">
+    <div class="card">
+      <h2>🧠 Quiz (60 Questions)</h2>
+      <p class="hint">
+        Tap <b>Show Answer</b> to reveal the correct option + a quick explanation.
+      </p>
+
+      <div class="controls">
+        <button class="btn primary" id="btnLoadQuiz">Load Quiz</button>
+        <button class="btn" id="btnShuffleQuiz">Shuffle</button>
+        <button class="btn danger" id="btnClearQuiz">Clear</button>
+      </div>
+
+      <div id="quizList" class="quizList"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <span>Built for fast exam revision • Stacks • Queues • Conversions • Evaluations</span>
+  <span>By Ahmed Hisham</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
